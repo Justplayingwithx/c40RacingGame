@@ -47,6 +47,8 @@ class Game {
     textSize(30);
     text("Game Start", 120, 100)
     Player.getPlayerInfo();
+    player.findFinishedCars();
+
 
     if(allPlayers !== undefined){
 
@@ -91,15 +93,25 @@ class Game {
     }
     if(player.distance>5200){
       gameState = 2;
+      player.rank++;
+      Player.updateCarRank(player.rank);
+      player.update();
     }
-    console.log("hi")
+   // console.log("hi")
     drawSprites();
-    console.log("xxx")
+    //console.log("xxx")
   }
 end(){
 
-console.log("game has ended")
-
+/*console.log("game has ended")*/
+console.log(player.rank);
+background("white")
+Player.getPlayerInfo();
+if(allPlayers!=undefined){
+  for(var plr in allPlayers){
+    text(allPlayers[plr].name+":"+allPlayers[plr].rank,displayWidth/2,displayHeight/2);
+  }
+}
   
 }
 
